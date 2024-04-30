@@ -3,7 +3,7 @@ const guessedLetters = document.querySelector(".guessed-letters");
 // button with the text "Guess" in it
 const guessButton = document.querySelector(".guess");
 // text input where player will guess a letter
-const letterInput = document.querySelector("#letter");
+const letter = document.querySelector("#letter");
 // empty paragraph where the word in progress will appear
 const wordInProgress = document.querySelector(".word-in-progress");
 // paragraph where the remaining gueeses will display
@@ -23,3 +23,11 @@ const progress = function (word) {
     wordInProgress.innerText = symbol.repeat(word.length);
 };
 progress(word);
+
+guessButton.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const letterInput = letter.value;
+    letter.value = "";
+    console.log(letterInput)
+});
