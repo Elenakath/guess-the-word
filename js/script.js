@@ -60,11 +60,12 @@ const playerInput = function (input) {
 };
 
 const makeGuess = function (guess) {
-    guess = guess.toUppercase;
+    guess = guess.toUpperCase();
     if (guessedLetters.includes(guess)) {
         message.innerText = "You already guessed that letter, try again."
     } else {
     guessedLetters.push(guess);
-    console.log(guessedLetters);
     }
+    console.log(guessedLetters);
 };
+
