@@ -15,15 +15,23 @@ const message = document.querySelector(".message");
 const playAgainButton = document.querySelector(".play-again");
 
 // starting word to test game out until fetch words form hosted file
-const word = "magnolia";
-
+let word = "magnolia";
 //letters users has guessed
 const guessedLetters = [];
-
 let remainingGuesses = 8;
 
-console.log(message);
-console.log(remainingGuessesSpan);
+const getWord = async function () {
+    const res = await fetch("https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt");
+    const words = await res.text();
+    //console.log(words);
+    const wordArray = words.split("\n");
+    console.log(wordArray);
+    const randomWordIndex = (Math.floor(Math.random() * wordArray.length));
+    console.log(randomWordIndex);
+    word = wordArray[randomWordIndex].trim();
+    placeholder(word);
+};
+getWord();
 
 const placeholder = function (word) {
     const placeholderLetters = [];
@@ -33,8 +41,6 @@ const placeholder = function (word) {
     }
     wordInProgress.innerText = placeholderLetters.join("");
   };
-  
-  placeholder(word);
 
 guessButton.addEventListener("click", function (e) {
     e.preventDefault();
@@ -118,7 +124,7 @@ const updateGuessesRemaining = function (guess) {
     message.innerText = `Good guess! ${guess} is in the word!`;
 }
     if (remainingGuesses === 0) {
-   message.innerHTML.innerText = `Game Over! The word was <span class="highlight">${word}</span>.`; 
+   message.innerHTML = `Game Over! The word was <span class="highlight">${word}</span>.`; 
 } else if (remainingGuesses === 1) {
     remainingGuessesSpan.innerText = `${remainingGuesses} guess`;
 } else {
