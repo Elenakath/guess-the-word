@@ -17,7 +17,7 @@ const playAgainButton = document.querySelector(".play-again");
 // starting word to test game out until fetch words form hosted file
 let word = "magnolia";
 //letters users has guessed
-const guessedLetters = [];
+let guessedLetters = [];
 let remainingGuesses = 8;
 
 const getWord = async function () {
@@ -82,12 +82,11 @@ const makeGuess = function (guess) {
         message.innerText = "You already guessed that letter, try again."
     } else {
     guessedLetters.push(guess);
-    playerGuess();
-    }
     console.log(guessedLetters);
     updateGuessesRemaining(guess);
+    playerGuess();
     updatedWord(guessedLetters);
-    winChecker();
+    }
 };
 
 const playerGuess = function () {
@@ -112,7 +111,7 @@ const updatedWord = function (guessedLetters) {
         }
     }
     wordInProgress.innerText = revealWord.join("");
-    console.log(revealWord);
+    winChecker();
 };
 
 const updateGuessesRemaining = function (guess) {
@@ -160,12 +159,8 @@ playAgainButton.addEventListener("click", function () {
 
     getWord();
    
-    guessButton().classList.add("show");
-   
+    guessButton.classList.remove("hide");
     playAgainButton.classList.add("hide");
     remainingGuessesSpan.classList.add("hide");
     guessedLetters.classList.add("hide");
-
-
-
 });
