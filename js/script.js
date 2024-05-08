@@ -123,7 +123,7 @@ const updateGuessesRemaining = function (guess) {
     message.innerText = `Good guess! ${guess} is in the word!`;
 }
     if (remainingGuesses === 0) {
-   message.innerText = `Game Over! The word was <span class="highlight">${word}</span>.`; 
+   message.innerHTML = `Game Over! The word was <span class="highlight">${word}</span>.`; 
    startOver();
 } else if (remainingGuesses === 1) {
     remainingGuessesSpan.innerText = `${remainingGuesses} guess`;
@@ -143,7 +143,7 @@ const winChecker = function () {
 //play again 
 const startOver = function () {
     guessButton.classList.add("hide");
-    message.classList.add("hide");
+    remainingGuessesSpan.classList.add("hide");
     guessedLettersList.classList.add("hide");
     playAgainButton.classList.remove("hide");
 };
